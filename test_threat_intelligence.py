@@ -1,5 +1,6 @@
 from ip_analyzer import analyze_ip_addresses
 from abuseipdb import check_ip_abuse
+from virustotal import check_ip_virustotal
 
 
 test_ips = [
@@ -8,13 +9,22 @@ test_ips = [
     "8.8.8.8"
 ]
 
+
 analysis = analyze_ip_addresses(test_ips)
 
 print("\nIP Analysis:")
 print(analysis)
 
+
 print("\nAbuseIPDB Results:")
 
 for ip in analysis["public_ips"]:
     result = check_ip_abuse(ip)
+    print(result)
+
+
+print("\nVirusTotal Results:")
+
+for ip in analysis["public_ips"]:
+    result = check_ip_virustotal(ip)
     print(result)
